@@ -54,15 +54,12 @@ class NegociacaoController {
 
         let service = new NegociacaoService();
 
-        Promise.all([
-            service.obterNegociacoesDaSemana(),
-            service.obterNegociacoesDaSemanaAnterior(),
-            service.obterNegociacoesDaSemanaRetrasada()
-        ]).then(negociacoes => {
-            negociacoes.reduce((arrayAchatado, array) => arrayAchatado.concat(array), [])
-                .forEach(negociacao => this._listaNegociacoes.adiciona(negociacao));
-            this._mensagem.texto = 'Negociaçoes adicionadas com sucesso!';
-        }).catch(erro => this._mensagem.texto = erro);
+        service.obterNegociacoes()
+            .then(negociacoes => {
+                negociacoes.reduce((arrayAchatado, array) => arrayAchatado.concat(array), [])
+                    .forEach(negociacao => this._listaNegociacoes.adiciona(negociacao));
+                this._mensagem.texto = 'Negociaçoes adicionadas com sucesso!';
+            }).catch(erro => this._mensagem.texto = erro);
 
         /*
 
@@ -126,15 +123,15 @@ class NegociacaoController {
 
     apaga() {
         ConnectionFactory
-        .getConnectionFactory()
-        .then(connection => new NegociacaoDao(connection))
-        .then(dao => dao.apagaTodos())
-        .then(mensagem => {
-            this._listaNegociacoes.esvazia();
-            this._mensagem.texto = mensagem;
-        })
-        .catch(erro => this._mensagem.texto = erro);
-        
+            .getConnectionFactory()
+            .then(connection => new NegociacaoDao(connection))
+            .then(dao => dao.apagaTodos())
+            .then(mensagem => {
+                this._listaNegociacoes.esvazia();
+                this._mensagem.texto = mensagem;
+            })
+            .catch(erro => this._mensagem.texto = erro);
+
     }
 
     _criaNegociacao() {
