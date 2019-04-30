@@ -55,11 +55,15 @@ class NegociacaoController {
         let service = new NegociacaoService();
 
         service.obterNegociacoes()
-            .then(negociacoes => {
-                negociacoes.reduce((arrayAchatado, array) => arrayAchatado.concat(array), [])
-                    .forEach(negociacao => this._listaNegociacoes.adiciona(negociacao));
-                this._mensagem.texto = 'Negociaçoes adicionadas com sucesso!';
-            }).catch(erro => this._mensagem.texto = erro);
+            .then(negociacoes =>
+                negociacoes.filter(negociacao =>
+                    !this._listaNegociacoes.negociacoes.some(negociacaoExistente =>
+                        JSON.stringify(negociacao) == JSON.stringify(negociacaoExistente)))
+            )
+            .then(negociacoes => negociacoes.forEach(negociacao => {
+                    this._listaNegociacoes.adiciona(negociacao);
+                    this._mensagem.texto = 'Negociaçoes adicionadas com sucesso!';
+            })).catch(erro => this._mensagem.texto = erro);
 
         /*
 
