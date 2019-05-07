@@ -35,6 +35,16 @@ class HttpService {
     };
     */
 
+    post(url, dado){
+        fetch(url, {
+            headers: {'Content-Type': 'application/json' },
+            method: 'post',
+            body: JSON.stringify(dado)
+        })
+        .then(res => this._handlerErrors(res));
+    }
+
+    /*
     post(url, dado) {
 
         return new Promise((resolve, reject) => {
@@ -59,4 +69,5 @@ class HttpService {
         });
 
     };
+    */
 }
