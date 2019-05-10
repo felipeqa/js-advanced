@@ -43,3 +43,4 @@ var Negociacao = function () {
 
     return Negociacao;
 }();
+//# sourceMappingURL=Negociacao.js.map

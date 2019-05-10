@@ -39,3 +39,4 @@ var NegociacoesView = function (_View) {
 //         return total;
 //     })() }
 // </td>
+//# sourceMappingURL=NegociacoesView.js.map

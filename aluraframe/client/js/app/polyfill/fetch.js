@@ -505,3 +505,4 @@ if (!self.fetch) {
   self.Request = Request;
   self.Response = Response;
 }
+//# sourceMappingURL=fetch.js.map
