@@ -9,11 +9,11 @@ export class NegociacoesView extends View {
         
         console.log(currentInstance);
         
-        // elemento.addEventListener('click', function(event){
-        //     if(event.target.nodeName == 'TH'){
-        //         currentInstance().ordena(event.target.textContent.toLowerCase());
-        //     }
-        // });
+        elemento.addEventListener('click', function(event){
+            if(event.target.nodeName == 'TH'){
+                currentInstance().ordena(event.target.textContent.toLowerCase());
+            }
+        });
     }
 
     template(model) {

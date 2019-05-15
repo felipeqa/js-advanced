@@ -72,11 +72,11 @@ System.register(['./View', '../helpers/DateHelper', '../controllers/NegociacaoCo
 
                     console.log(currentInstance);
 
-                    // elemento.addEventListener('click', function(event){
-                    //     if(event.target.nodeName == 'TH'){
-                    //         currentInstance().ordena(event.target.textContent.toLowerCase());
-                    //     }
-                    // });
+                    elemento.addEventListener('click', function (event) {
+                        if (event.target.nodeName == 'TH') {
+                            currentInstance().ordena(event.target.textContent.toLowerCase());
+                        }
+                    });
                     return _this;
                 }
 
